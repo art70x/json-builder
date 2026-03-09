@@ -4,7 +4,7 @@ type FooterProperties = {
 
 export function Footer({ propsCount }: FooterProperties) {
   const hostname =
-    typeof window === "undefined" ? "" : encodeURIComponent(window.location.hostname);
+    globalThis.window === undefined ? "" : encodeURIComponent(globalThis.location.hostname);
 
   return (
     <footer
