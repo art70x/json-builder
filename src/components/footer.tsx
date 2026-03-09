@@ -3,9 +3,6 @@ type FooterProperties = {
 }
 
 export function Footer({ propsCount }: FooterProperties) {
-  const hostname =
-    globalThis.window === undefined ? '' : encodeURIComponent(globalThis.location.hostname)
-
   return (
     <footer
       aria-label="Application footer"
@@ -18,12 +15,12 @@ export function Footer({ propsCount }: FooterProperties) {
       </span>
 
       <a
-        href={`https://caffeine.ai?utm_source=footer&utm_medium=referral&utm_content=${hostname}`}
+        href="https://github.com/art70x"
         target="_blank"
         rel="noopener noreferrer"
         className="font-mono text-xs text-muted-foreground/40 transition-colors hover:text-muted-foreground/70"
       >
-        &copy; {new Date().getFullYear()}. Built with ♥ using caffeine.ai
+        &copy; {new Date().getFullYear()}. Built with ♥ by art70x
       </a>
     </footer>
   )

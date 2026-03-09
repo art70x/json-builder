@@ -34,7 +34,7 @@ export function Header({
         {/* Brand */}
         <div className="mr-auto flex items-center gap-2">
           <div className="drop-shadow-glow flex items-center gap-1.5 rounded-lg bg-primary-light/15 p-1 shadow-glow">
-            <ILucideBraces className="h-4 w-4 text-primary-light" />
+            <ILucideBrackets className="h-4 w-4 text-primary-light" />
           </div>
 
           <span className="hidden font-mono text-sm font-semibold tracking-widest text-muted-foreground transition-colors duration-200 select-none hover:text-foreground sm:block">

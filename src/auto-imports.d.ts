@@ -10,6 +10,7 @@ declare global {
   const Fragment: typeof import('react').Fragment
   const ILucideAlignLeft: typeof import('~icons/lucide/align-left.jsx').default
   const ILucideBraces: typeof import('~icons/lucide/braces.jsx').default
+  const ILucideBrackets: typeof import('~icons/lucide/brackets.jsx').default
   const ILucideCheck: typeof import('~icons/lucide/check.jsx').default
   const ILucideChevronDown: typeof import('~icons/lucide/chevron-down.jsx').default
   const ILucideCopy: typeof import('~icons/lucide/copy.jsx').default
