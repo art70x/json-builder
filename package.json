@@ -73,5 +73,6 @@
   "resolutions": {
     "sharp": "^0.34.5",
     "sharp-ico": "^0.1.5"
-  }
+  },
+  "packageManager": "pnpm@10.31.0"
 }
