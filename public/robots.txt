@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://json-data-builder.caffeine.app/sitemap.xml
+Sitemap: https://json-b.vercel.app/sitemap.xml
