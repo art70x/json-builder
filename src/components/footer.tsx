@@ -1,10 +1,10 @@
 type FooterProperties = {
-  propsCount: number;
-};
+  propsCount: number
+}
 
 export function Footer({ propsCount }: FooterProperties) {
   const hostname =
-    globalThis.window === undefined ? "" : encodeURIComponent(globalThis.location.hostname);
+    globalThis.window === undefined ? '' : encodeURIComponent(globalThis.location.hostname)
 
   return (
     <footer
@@ -12,9 +12,9 @@ export function Footer({ propsCount }: FooterProperties) {
       className="flex items-center justify-between border-t border-border/40 px-4 py-2.5"
     >
       <span className="font-mono text-xs text-muted-foreground/40">
-        <span className="text-muted-foreground/25">{"{"}</span>
+        <span className="text-muted-foreground/25">{'{'}</span>
         <span className="mx-1 text-muted-foreground/60">{propsCount} props</span>
-        <span className="text-muted-foreground/25">{"}"}</span>
+        <span className="text-muted-foreground/25">{'}'}</span>
       </span>
 
       <a
@@ -26,5 +26,5 @@ export function Footer({ propsCount }: FooterProperties) {
         &copy; {new Date().getFullYear()}. Built with ♥ using caffeine.ai
       </a>
     </footer>
-  );
+  )
 }
