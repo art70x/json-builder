@@ -1,0 +1,94 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  merge_group:
+
+# cancel in-progress runs on new commits to same PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  types:
+    name: 💪 Type check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - uses: pnpm/action-setup@v4
+        with:
+          cache: true
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 💪 Type check
+        run: pnpm type-check
+
+  format:
+    name: 🎨 Format code
+    runs-on: ubuntu-latest
+    if: github.event_name != 'merge_group'
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - uses: pnpm/action-setup@v4
+        with:
+          cache: true
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🎨 Format code
+        run: pnpm format
+
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'chore(format): auto-format files'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+
+  lint:
+    name: 🔠 Lint & fix
+    runs-on: ubuntu-latest
+    if: github.event_name != 'merge_group'
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - uses: pnpm/action-setup@v4
+        with:
+          cache: true
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔠 Lint
+        run: pnpm lint
+
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'chore(lint): auto-fix lint issues'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: '41898282+github-actions[bot]@users.noreply.github.com'
