@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* inter-latin-wght-normal */
+@font-face {
+  font-style: normal;
+  font-weight: 400 800;
+  font-family: 'Inter Variable';
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(@fontsource-variable/inter/files/inter-latin-wght-normal.woff2)
+    format('woff2-variations');
+}
+
+/* jetbrains-mono-latin-wght-normal */
+@font-face {
+  font-style: normal;
+  font-weight: 400 600;
+  font-family: 'JetBrains Mono Variable';
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2)
+    format('woff2-variations');
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility glow-primary {
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--primary), transparent 30%),
+    0 0 12px color-mix(in oklch, var(--primary), transparent 10%);
+}
+
+@utility font-sans {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+@utility font-mono {
+  font-feature-settings: 'ss02', 'zero';
+}
+
+@theme inline {
+  --radius: 0.625rem;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --font-sans: 'Inter Variable', 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'Source Code Pro', Consolas, monospace;
+
+  --color-background: oklch(0.141 0.005 285.823);
+  --color-foreground: oklch(0.985 0 0);
+
+  --color-card: oklch(0.21 0.006 285.885);
+  --color-card-foreground: oklch(0.985 0 0);
+
+  --color-popover: oklch(0.21 0.006 285.885);
+  --color-popover-foreground: oklch(0.985 0 0);
+
+  --color-primary: oklch(0.432 0.095 166.913);
+  --color-primary-light: oklch(0.7996 0.1673 162.03);
+  --color-primary-foreground: oklch(0.979 0.021 166.113);
+
+  --color-secondary: oklch(0.274 0.006 286.033);
+  --color-secondary-foreground: oklch(0.979 0.021 166.113);
+
+  --color-muted: oklch(0.274 0.006 286.033);
+  --color-muted-foreground: oklch(0.705 0.015 286.067);
+
+  --color-accent: oklch(0.274 0.006 286.033);
+  --color-accent-foreground: oklch(0.985 0 0);
+
+  --color-destructive: var(--color-red-400);
+  --color-success: var(--color-green-400);
+
+  --color-border: oklch(1 0 0 / 10%);
+  --color-input: oklch(1 0 0 / 15%);
+  --color-ring: oklch(0.552 0.016 285.938);
+
+  --color-code-string: oklch(0.78 0.14 155);
+  --color-code-number: oklch(0.72 0.18 50);
+  --color-code-boolean: oklch(0.7 0.19 280);
+  --color-code-key: oklch(0.72 0.1 220);
+  --color-code-null: oklch(0.56 0.01 240);
+  --color-code-punctuation: oklch(0.6 0.01 240);
+
+  --color-terminal: oklch(0.11 0.006 250);
+
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklch, var(--primary), transparent 30%),
+    0 0 12px color-mix(in oklch, var(--primary), transparent 10%);
+
+  --animate-blink: blink 1s step-end infinite;
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50 transition-colors duration-160;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :focus-visible {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground selection:bg-primary/30 selection:text-primary-foreground;
+    max-width: 100vw;
+    min-height: 100vh;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+}
+
+/* Scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--color-secondary) 60%, transparent)
+    var(--color-background);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-secondary) 60%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

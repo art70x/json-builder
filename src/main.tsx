@@ -1,10 +1,13 @@
+import { Layout } from 'components/layout.tsx'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import App from './app.tsx'
+import './main.css'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.querySelector('#root')!).render(
   <StrictMode>
-    <App />
+    <Layout>
+      <App />
+    </Layout>
   </StrictMode>,
 )

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://json-data-builder.caffeine.app/sitemap.xml
