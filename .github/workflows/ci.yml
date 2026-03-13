@@ -21,74 +21,52 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
 
-      - uses: pnpm/action-setup@v4
-        with:
-          cache: true
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 💪 Type check
+      - name: Run type check
         run: pnpm type-check
 
-  format:
-    name: 🎨 Format code
+  fix:
+    name: 🧹 Format & Lint
     runs-on: ubuntu-latest
     if: github.event_name != 'merge_group'
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
 
-      - uses: pnpm/action-setup@v4
-        with:
-          cache: true
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🎨 Format code
+      - name: Lint & auto-fix
+        run: pnpm lint --fix
+
+      - name: Format code
         run: pnpm format
 
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Commit fixes
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore(format): auto-format files'
-          commit_user_name: 'github-actions[bot]'
-          commit_user_email: '41898282+github-actions[bot]@users.noreply.github.com'
-
-  lint:
-    name: 🔠 Lint & fix
-    runs-on: ubuntu-latest
-    if: github.event_name != 'merge_group'
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: lts/*
-
-      - uses: pnpm/action-setup@v4
-        with:
-          cache: true
-
-      - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🔠 Lint
-        run: pnpm lint
-
-      - uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: 'chore(lint): auto-fix lint issues'
-          commit_user_name: 'github-actions[bot]'
-          commit_user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+          commit_message: "chore(ci): auto format + lint fixes"
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
