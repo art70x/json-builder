@@ -154,7 +154,7 @@ function PropertyRow({ property, rowIndex, onChange, onDelete }: PropertyRowProp
             </SelectItem>
           </SelectContent>
         </Select>
-      ) : (property.type === 'array' ? (
+      ) : property.type === 'array' ? (
         <Input
           data-ocid={`property.value_input.${rowIndex}`}
           value={property.value}
@@ -175,7 +175,7 @@ function PropertyRow({ property, rowIndex, onChange, onDelete }: PropertyRowProp
           type={property.type === 'number' ? 'text' : 'text'}
           inputMode={property.type === 'number' ? 'decimal' : 'text'}
         />
-      ))}
+      )}
 
       {/* Type select */}
       <Select value={property.type} onValueChange={handleTypeChange}>
@@ -586,7 +586,7 @@ function SavedDatasetsSheet({ open, onOpenChange, onLoad }: SavedDatasetsSheetPr
               <ILucideLoader2 className="mr-2 h-5 w-5 animate-spin" />
               <span className="font-mono text-xs">Loading...</span>
             </div>
-          ) : (datasets.length === 0 ? (
+          ) : datasets.length === 0 ? (
             <div
               data-ocid="saved_datasets.empty_state"
               className="flex flex-col items-center justify-center py-16 text-center"
@@ -635,7 +635,7 @@ function SavedDatasetsSheet({ open, onOpenChange, onLoad }: SavedDatasetsSheetPr
               ))}
             </div>
             //{' '}
-          ))}
+          )}
         </div>
       </SheetContent>
     </Sheet>
